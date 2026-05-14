@@ -1,7 +1,6 @@
-## HTML/CSS Homework
+## HTML Graphing Homework
 
-Here are the screenshots of my output for the HTML/CSS Homework.
+Here are the screenshot of my output for the HTML Graphing Homework. For the graph below, I used my social media and marketing position with an influencer to track her posts throughout the last year. I tracked the month versus the amount of feed posts she produced over the year of 2025.  
 
 
-![Screenshot of HTML/CSS Homework first half](SS.FH.png)
-![Screenshot of HTML/CSS Homework second half](SS.sH.png) 
+![Screenshot of HTML Graphing Homework first half](Graph.png)
