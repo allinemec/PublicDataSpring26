@@ -1,67 +1,60 @@
-    //Declare consts/global variables
-        const margin = 30;
-        const width = 800; // change the data to read labels
-        const height = 500;
+//TODO
+//Consts, including our heart path command points     
+        const svgW = 800;
+        const svgH = 600;
+        const circle = ["M 100 100 m 75 0 a 75 75 0 1 0 -150 0 a 75 75 0 1 0 150 0"];
+        const size = 150;
+        const sizeY = 100;
 
-
-    //Load data 
-        d3.csv("posts.csv").then(data => {
-            console.log("data", data)
-        //format data
-        data.forEach(d => { 
-            d.month = d.month;
-            d.posts = +d.posts; 
-        });
         
-        const maxY = d3.max(data, d => d.posts);
+        //Load data and related variables
+        d3.csv("coffee-data.csv").then(data => {
+              console.log("data", data)
+          //format data
+          data.forEach(d => { 
+              d.day = d.day;
+              d.coffee = +d.coffee; 
+          });
 
+        const maxData = d3.max(data, d=>d.coffee);
+        const minData = d3.min(data, d=>d.coffee);
+        const rowLength = data.length;//
+        //const rowLength = 3;// what if we wanted to make a grid?
 
-    //Scales 
-        const xScale = d3.scaleBand()
-                        .domain(data.map(d => d.month))
-                        .range([margin, width - margin])
-                        .paddingInner(0.2); //made more room between bars
-        
-        const yScale = d3.scaleLinear()
-                        .domain([0, maxY]) 
-                        .range([height - margin, margin]);
-        
-
-    //SVG
+        const myColor = d3.scaleLinear()
+                          .domain([minData, maxData])
+                          .domain([0, maxData])
+                          .range(["white", "orange"]);
+        //Create a color scale
+        //SVG
         const svg = d3.select("body")
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
+                .append("svg")
+                .attr("width", svgW) 
+                .attr("height", svgH);
 
-                    
-    //Axes x and y
-        const bottomAxis = d3.axisBottom()
-                             .scale(xScale);
-        
-        const leftAxis = d3.axisLeft()
-                           .scale(yScale);
-        
+        //group    
+        const g = svg.selectAll("g")//our group! 
+                    .data(data)
+                    .enter()
+                    .append("g")
+                    .attr("transform", (d,i)=>{
+                          const x = (i % rowLength) * size; 
+                          const y = (Math.floor(i/rowLength)+1) * sizeY;
+                          console.log("xy", [x,y])
+                          return "translate(" + [x,y] + ")";})
+        //hearts                  
+        g.append("path")
+        .attr("d", circle)
+        .attr("fill", d=> myColor(d.coffee))//here we are applying color with .attr("fill")
+        .attr("class", "circle"); 
 
-    //Bars
-        svg.selectAll("rect") 
-            .data(data) 
-            .enter()
-            .append("rect")
-            .attr("x", d => xScale(d.month)) 
-            .attr("y", d => yScale(d.posts)) 
-            .attr("width", xScale.bandwidth()) // note this is specific to using the bandscale as the scale calculates padding
-            .attr("height", d => (height-margin) - yScale(d.posts))
-            .attr("fill", "coral");
-        
 
-    //Call axes
-        svg.append("g")
-            .attr("transform", "translate(0," + (height - margin) + ")") 
-            .call(bottomAxis);
+        //labels
+        g.append("text")
+        .attr("x", size/2 + 20) //x coordinate
+        .attr("y", size + 40) //y coordinate
+        .attr("dy", "5px") //y coordinate offset
+        .attr("class", "labels") 
+        .text(d=>d.day); //the text 
 
-        svg.append("g")
-            .attr("transform", "translate(" + margin + ",0)")
-            .call(leftAxis); 
-
-                
-    });
+        });  
