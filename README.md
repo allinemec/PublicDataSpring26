@@ -4,6 +4,8 @@ Here is my output of the D3 Homework 2 using SVG and D3 template. I decided to m
 
 ![Screenshot of D3 HW2](coffee.png)
 
-External sources i used were: [Link to first additional source](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Basic_shapes)
+External sources I used were: [Link to first additional source](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch/Basic_shapes)
+
 [Link to second additional source](https://www.w3schools.com/cssref/css_websafe_fonts.php)
+
 [Link to third additional source](https://stackoverflow.com/questions/5737975/circle-drawing-with-svgs-arc-path)
