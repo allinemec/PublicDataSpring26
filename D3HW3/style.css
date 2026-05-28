@@ -1,0 +1,39 @@
+            .axis path, 
+            .axis line{
+                stroke: rgb(114, 31, 116);
+            }
+
+            .axis text{
+                font-family: sans-serif;
+                font-size: 10px;
+                fill: rgb(114, 31, 116);
+                }
+            
+            .line {
+                fill: none; 
+                stroke: rgb(191, 171, 53); 
+                stroke-width: 2px;
+            }
+            
+            button {
+                display: inline-block;
+                border: none;
+                background-color: rgb(197, 129, 241);
+                color: rgb(114, 31, 116);
+                text-align: center;
+                text-decoration: none;
+                border-radius: 2px; 
+                font-size: 12px;   
+            }
+
+            button:hover {
+                background-color: rgb(248, 245, 220);
+            }
+            
+            /*Style the h1*/
+            h1 {
+                font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                font-size: 28px;
+                color: rgb(114, 31, 116);
+            }
+          
